@@ -3,7 +3,8 @@ import axios from 'axios'
 
 // Configuração da conexão com o Java (Backend)
 const api = axios.create({
-  baseURL: 'http://localhost:8080',
+  // URL PÚBLICA CORRIGIDA para o Render
+  baseURL: 'https://sistema-academico-fullstack.onrender.com', 
   auth: {
     username: 'admin', 
     password: '123'
@@ -32,7 +33,7 @@ function App() {
         setNovoAluno({ nome: '', matricula: '', email: '' })
         carregarAlunos()
       })
-      .catch(error => alert("Erro ao salvar! Verifique se o Java está rodando ou se há erro no console."))
+      .catch(error => alert("Erro ao salvar! Verifique se a API está online."))
   }
 
   return (
@@ -100,12 +101,12 @@ function App() {
           <li style={{ color: '#999', padding: '15px' }}>Nenhum aluno cadastrado.</li>
         ) : (
           alunos.map(aluno => (
-            // LIST ITEM: Estilo ajustado para garantir que o texto apareça em qualquer fundo (branco)
+            // LIST ITEM: Estilo ajustado para garantir que o texto apareça em qualquer fundo (claro)
             <li key={aluno.id} style={{ 
                 padding: '15px', 
                 borderBottom: '1px solid #eee', 
                 backgroundColor: '#fff', 
-                color: '#333', // Cor do TEXTO definida para o preto (garantindo visibilidade)
+                color: '#333', // Cor do TEXTO definida para o preto
                 borderRadius: '5px',
                 marginBottom: '8px',
                 boxShadow: '0 1px 3px rgba(0,0,0,0.05)'
