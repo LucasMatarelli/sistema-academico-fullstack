@@ -1,128 +1,91 @@
-### 1. 📂 README.md (Raiz do Repositório)
-Crie este arquivo na pasta principal do seu projeto.
+### 1. 🌐 README.md (Raiz do Repositório)
+Este arquivo é a primeira impressão do seu projeto.
 
 Markdown
 
-# [cite_start]🎓 Prática Avaliativa: Sistema Acadêmico Full Stack [cite: 16]
+# 🎓 Sistema Acadêmico Integrado: Performance e Segurança
+
+## Status do Projeto
+| Componente | Plataforma | Status | Link Público |
+| :--- | :--- | :--- | :--- |
+| **API REST (Backend)** | Render | ✅ Online | `https://sistema-academico-fullstack.onrender.com` |
+| **Site (Frontend)** | Vercel | ✅ Online | `https://sistema-academico-fullstack.vercel.app` |
+
+## Visão Geral e Conquistas
+Este projeto é a implementação full stack de um sistema acadêmico, com foco rigoroso em segurança, observabilidade e escalabilidade.
+
+- **🚀 Performance Comprovada:** O sistema demonstrou **0.00% de taxa de erro** sob estresse (100 usuários simultâneos).
+- **🔒 Segurança Ativa:** Configuração de Basic Auth e regras de CORS para proteção da API.
+- **🔗 Infraestrutura Complexa:** Deploy bem-sucedido de um aplicativo Java (Gradle) em um ambiente Dockerizado (Render).
+
+## 🛠️ Stack Tecnológico
+- **Backend:** Spring Boot 3, Java 17, Spring Security.
+- **Observabilidade:** Prometheus & Grafana (Docker).
+- **Testes:** Apache JMeter.
+- **Frontend:** React, Vite, Axios.
+### 2. 💻 README.md (Pasta /backend)
+Este é o seu relatório de engenharia, destacando a complexidade do deploy e os resultados do teste.
+
+Markdown
+
+# Backend: Relatório Técnico e API REST
 
 ## 🎯 Objetivo
-[cite_start]Desenvolver uma aplicação web full stack, segura e monitorada, utilizando Spring Boot 3 e React, com foco na arquitetura de microsserviços e na escalabilidade[cite: 18, 24].
+Prover uma API robusta com persistência de dados (Relacionamento N:N) e garantir que a aplicação possa ser monitorada e estressada em produção.
 
-## 🛠️ Tecnologias Principais
-- [cite_start]**Backend:** Spring Boot 3 [cite: 26] (Java 17, Gradle)
-- [cite_start]**Frontend:** React, Vite [cite: 79, 80]
-- [cite_start]**Segurança:** Spring Security [cite: 30, 56] (Basic Auth)
-- [cite_start]**Banco de Dados:** H2 Database (em memória) [cite: 34]
-- [cite_start]**Monitoramento:** Prometheus e Grafana (via Docker) [cite: 47, 49, 103]
-- [cite_start]**Testes de Carga:** Apache JMeter [cite: 66]
-- [cite_start]**Deploy:** Render (API) [cite: 83] [cite_start]e Vercel (Site) [cite: 84]
+## 🔒 Segurança e Acesso
+- **Mecanismo:** Autenticação Básica (Basic Auth).
+- **Credenciais de Teste:** Usuário: `admin` / Senha: `123`.
+- **Documentação (Swagger/OpenAPI):** Acessível em `http://localhost:8080/swagger-ui/index.html`.
 
-## 🗺️ Estrutura do Projeto
-- **/backend:** Contém o código da API, segurança, JPA e arquivos Docker.
-- **/frontend:** Contém o código da interface web React/Vite.
-### 2. 🖥️ README.md (Pasta /backend)
-Este é o seu relatório técnico que comprova os testes e o deploy .
+## 📈 Resultados de Teste de Carga (JMeter)
+
+O teste de stress validou que a API mantém o desempenho sob pressão (100 usuários x 5 loops).[Uploading Summary Report.jmx…]()
+
+[Uploading Summary Report.jmx…]()
+
+
+| Métrica | Performance |
+| :--- | :--- |
+| **Taxa de Erro** | **0.00%** (Nenhuma falha de servidor) |
+| **Tempo Médio de Resposta** | 74 ms (Excelente latência) |
+| **Vazão (Throughput)** | 49.1 requisições/segundo |
+
+## ☁️ Deploy no Render (Instruções Finais)
+
+A compilação e execução são automatizadas no Render, que utiliza a seguinte sequência de comandos para lidar com o projeto Gradle:
+
+- **Build/Run Command:** (Comando combinado para superar a limitação do Docker)
+  `cp -r . /tmp/app && cd /tmp/app && ./gradlew clean build && java -jar build/libs/*.jar`
+
+### Como Monitorar Localmente (Opcional)
+1.  **Pré-requisito:** Backend rodando (`./gradlew bootRun`).
+2.  Na pasta Docker, execute: `docker compose up`
+3.  **Acessos:** Grafana (`http://localhost:3000`), Prometheus (`http://localhost:9090`).
+### 3. 🌐 README.md (Pasta /frontend)
+Este README foca na conexão final e na usabilidade do site.
 
 Markdown
 
-# Backend: API Sistema Acadêmico (Java/Spring Boot 3)
-
-## [cite_start]🚀 Como Rodar Localmente [cite: 139]
-
-1. **Pré-requisitos:** Java JDK 17+, Docker Desktop.
-2. **Execução:** Abra o terminal na pasta `/backend` e execute:
-   ```bash
-   ./gradlew bootRun
-🔒 Segurança e Documentação 
-
-
-Autenticação: O sistema utiliza Basic Authentication.
-
-Credenciais de Teste: Usuário: admin / Senha: 123.
-
-Documentação (Swagger/OpenAPI): Acessível em http://localhost:8080/swagger-ui/index.html.
-
-📊 Monitoramento com Prometheus e Grafana 
-
-O monitoramento de métricas do Spring Actuator é configurado via Docker Compose.
-
-
-Execução: No terminal, navegue até a pasta /backend e execute: docker compose up
-
-
-Acessos: Grafana  (http://localhost:3000) e Prometheus  (http://localhost:9090).
-
-
-🔨 Testes de Carga e Stress (Apache JMeter) 
-
-
-O teste simula o acesso simultâneo ao endpoint /alunos para avaliar a estabilidade e escalabilidade.
-
-
-Configuração: O arquivo Summary Report.jmx simula 100 usuários com 10 segundos de ramp-up em 5 loops  (Total: 500 requisições).
-
-
-
-Endpoint Testado: http://localhost:8080/alunos (Método GET).
-
-
-Credenciais Utilizadas: admin / 123.
-
-Resultado Obtido (Comprovado):
-
-Taxa de Erro: 0.00%
-
-Tempo Médio de Resposta: ~74 ms (Excelente desempenho)
-
-☁️ Deploy no Render 
-
-A API está publicada publicamente e acessível pela internet.
-
-Link Público: https://sistema-academico-fullstack.onrender.com
-
-Comando de Início (Docker Command):
-
-Bash
-
-/bin/sh -c "cd /opt/render/project/src && sh ./gradlew clean build && java -jar build/libs/*.jar"
-📚 Referências 
-
-Spring Boot Docs, Spring Security Docs, Prometheus Docs.
-
-
-***
-
-### 3. 🌐 README.md (Pasta /frontend)
-
-Este arquivo detalha o cliente web e o deploy no Vercel [cite: 145-150].
-
-```markdown
 # Frontend: Interface Web (React/Vite)
 
-## 💻 Tecnologias Utilizadas [cite: 147]
+## 💡 Usabilidade e Conexão
 
-- React, Vite (Javascript) [cite: 79, 80]
-- Axios (Cliente HTTP para comunicação com a API)
+A interface permite o cadastro e a visualização imediata de alunos, provando que a comunicação segura entre o domínio Vercel e a API Render foi estabelecida com sucesso.
 
-## 🚀 Como Rodar Localmente [cite: 148]
+- **Tecnologia:** React, Vite (Javascript) e Axios.
+- **Conexão Final:** O site está programado para consumir a API REST pública do Render (HTTPS).
 
-1.  **Pré-requisitos:** Node.js (LTS).
-2.  **Execução:** No terminal, na pasta `/frontend`, execute:
-    ```bash
-    npm install
-    npm run dev
-    ```
+## 🔌 Detalhes da Conexão
+- **URL Base:** `https://sistema-academico-fullstack.onrender.com`
+- **Segurança:** O Axios envia as credenciais `admin/123` em cada requisição (Basic Auth).
 
-## 🌐 Consumo da API [cite: 149]
+## 🚀 Como Rodar Localmente
+1.  **Instalação:** Na pasta `/frontend`, execute `npm install`.
+2.  **Execução:** Execute `npm run dev`.
 
-O site consome a API REST pública do Backend (hospedado no Render).
-
-- **URL Base Final:** `https://sistema-academico-fullstack.onrender.com`
-- **Autenticação:** O Axios envia as credenciais `admin/123`  em todas as requisições.
-
-## ☁️ Deploy no Vercel [cite: 84, 150]
-
-O Frontend está publicado publicamente no Vercel e conectado ao link final da API.
+## ☁️ Deploy no Vercel
+O site está publicado publicamente no Vercel e está funcionalmente conectado à API:
 
 - **Link Público Final:** `https://sistema-academico-fullstack.vercel.app`
-- **Configuração:** O deploy foi configurado com `Root Directory: frontend`.
+- **Configuração:** O deploy utiliza `Root Directory: frontend`.
