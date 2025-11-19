@@ -34,8 +34,9 @@ Prover uma API robusta com persistência de dados (Relacionamento N:N) e garanti
 - **Credenciais de Teste:** Usuário: `admin` / Senha: `123`.
 - **Documentação (Swagger/OpenAPI):** Acessível em `http://localhost:8080/swagger-ui/index.html`.
 
-## 📈 Resultados de Teste de Carga (JMeter)
+## 🔨 Testes de Carga e Stress (Apache JMeter)
 
+- *Arquivo de Teste:* O plano de teste (`teste_de_carga.jmx`) está disponível nesta pasta para execução.
 O teste de stress validou que a API mantém o desempenho sob pressão (100 usuários x 5 loops).
 
 | Métrica | Performance |
