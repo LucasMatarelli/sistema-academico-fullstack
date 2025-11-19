@@ -3,12 +3,6 @@ package com.sistema.academico.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.User; // Novo
-import org.springframework.security.core.userdetails.UserDetails; // Novo
-import org.springframework.security.core.userdetails.UserDetailsService; // Novo
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; // Novo
-import org.springframework.security.crypto.password.PasswordEncoder; // Novo
-import org.springframework.security.provisioning.InMemoryUserDetailsManager; // Novo
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -38,36 +32,14 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // --- NOVO: Configuração do Usuário para Testes ---
+    // A configuração do usuário 'admin' será lida automaticamente do application.properties.
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        // Define o encoder de senhas (BCrypt é o padrão)
-        // O Spring Security exige este Bean, mesmo que usemos {noop} abaixo.
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        // Define o usuário 'admin' na memória
-        UserDetails admin = User.builder()
-            .username("admin")
-            // IMPORTANTE: {noop} faz o Spring reconhecer a senha "123" sem criptografar.
-            // Para produção, você usaria .password(passwordEncoder().encode("123"))
-            .password("{noop}123") 
-            .roles("ADMIN", "USER")
-            .build();
-        return new InMemoryUserDetailsManager(admin);
-    }
-
-    // --- FIM NOVO: Configuração do Usuário ---
-
-    // Configuração Explícita do CORS para a porta 5173
+    // Configuração Explícita do CORS: Permite o localhost e o domínio público do Vercel
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        // Apenas a porta do React é permitida
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173")); 
+        // Permissões FINAIS: Permite o domínio local E o domínio público do Vercel
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "https://sistema-academico-fullstack.vercel.app")); 
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowedHeaders(Collections.singletonList("*"));
         configuration.setAllowCredentials(true);
