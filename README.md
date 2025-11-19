@@ -1,7 +1,4 @@
 ### 1. 🌐 README.md (Raiz do Repositório)
-Este arquivo é a primeira impressão do seu projeto.
-
-Markdown
 
 # 🎓 Sistema Acadêmico Integrado: Performance e Segurança
 
@@ -26,7 +23,6 @@ Este projeto é a implementação full stack de um sistema acadêmico, com foco 
 ### 2. 💻 README.md (Pasta /backend)
 Este é o seu relatório de engenharia, destacando a complexidade do deploy e os resultados do teste.
 
-Markdown
 
 # Backend: Relatório Técnico e API REST
 
@@ -65,7 +61,6 @@ A compilação e execução são automatizadas no Render, que utiliza a seguinte
 ### 3. 🌐 README.md (Pasta /frontend)
 Este README foca na conexão final e na usabilidade do site.
 
-Markdown
 
 # Frontend: Interface Web (React/Vite)
 
