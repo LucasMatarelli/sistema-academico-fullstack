@@ -1,24 +1,29 @@
-# --- Estágio 1: Construção (Build) ---
-FROM maven:3.8.5-openjdk-17 AS build
+# --- Estágio 1: Construção (Build com Gradle) ---
+# Usamos a imagem JDK (Java Development Kit) para ter as ferramentas de build
+FROM eclipse-temurin:17-jdk-alpine AS build
 WORKDIR /app
-# Copia todos os arquivos do seu projeto para dentro do container de build
+
+# Copia todos os arquivos do projeto para dentro do container
 COPY . .
-# Executa o build (gera o arquivo .jar)
-RUN mvn clean package -DskipTests
+
+# Dá permissão de execução ao gradlew (essencial para Linux/Docker)
+RUN chmod +x gradlew
+
+# Executa o build com Gradle (pulando testes para ser mais rápido)
+RUN ./gradlew clean build -x test --no-daemon
 
 # --- Estágio 2: Execução (Runtime) ---
+# Usamos a imagem JRE (Java Runtime Environment) que é mais leve
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 
-# Copia o arquivo .jar gerado no estágio anterior
-COPY --from=build /app/target/*.jar app.jar
+# Copia o jar gerado na pasta build/libs para o nome app.jar
+# O Gradle gera o arquivo em build/libs/, diferente do Maven que é em target/
+COPY --from=build /app/build/libs/*.jar app.jar
 
-# AQUI ESTÁ A SOLUÇÃO DO SEU ERRO:
-# Copia o script start.sh para dentro do container final
+# Copia o script start.sh
 COPY start.sh .
 
-# Dá permissão de execução para o script (essencial para Linux)
+# Dá permissão e define o comando de inicialização
 RUN chmod +x start.sh
-
-# Comando padrão para iniciar (pode ser sobrescrito pelo Render)
 CMD ["./start.sh"]
