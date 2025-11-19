@@ -21,7 +21,7 @@ Este projeto é a implementação full stack de um sistema acadêmico, com foco 
 - **Testes:** Apache JMeter.
 - **Frontend:** React, Vite, Axios.
 ### 2. 💻 README.md (Pasta /backend)
-Este é o seu relatório de engenharia, destacando a complexidade do deploy e os resultados do teste.
+Este é o relatório de engenharia, destacando a complexidade do deploy e os resultados do teste.
 
 
 # Backend: Relatório Técnico e API REST
