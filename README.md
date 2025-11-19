@@ -36,7 +36,7 @@ Prover uma API robusta com persistência de dados (Relacionamento N:N) e garanti
 
 ## 📈 Resultados de Teste de Carga (JMeter)
 
-O teste de stress validou que a API mantém o desempenho sob pressão (100 usuários x 5 loops).[Uploading Summary Report.jmx…]()
+O teste de stress validou que a API mantém o desempenho sob pressão (100 usuários x 5 loops).
 
 [Uploading Summary Report.jmx…]()
 
